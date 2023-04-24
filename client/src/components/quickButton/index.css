@@ -1,0 +1,171 @@
+
+/* 菜单按钮 */
+.menu-button{
+    width: 30px;
+    height: 30px;
+    background-color: rgba(44, 90, 44, 0.6);
+    border-radius: 50%;
+    /* 投影 */
+    /* box-shadow: 0 0 0 2px rgba(67, 124, 50, 0.3); */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 5px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+  }
+  .menu-button:hover{
+    background-color: rgba(44, 90, 44, 0.6);
+    box-shadow: 0 0 0 2px rgba(67, 124, 50, 0.3);
+  }
+  .menu-button .line-box{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+  }
+  /* 菜单按钮图标（四条杠） */
+  .menu-button .line{
+    background-color: #fff;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+  }
+  /* 前后两条短，中间的长 */
+  .menu-button .line:first-child{
+    width: 40%;
+    transform-origin: right;
+    /* 过渡效果 */
+    transition: transform 0.3s ease-in-out;
+  }
+  .menu-button .line:last-child{
+    width: 40%;
+    align-self: flex-end;
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+  }
+  .menu-button .line:nth-child(2){
+    background-color: #fff;
+    width: 65%;
+    height: 2px;
+    border-radius: 2px;
+  }
+  /* 菜单列表 */
+  .menu-list{
+    width: 90px;
+    height: 115px;
+    background-color: #fff;
+    border-radius: 8px;
+    list-style: none;
+    padding: 2px;
+    box-shadow: 0 0 1px 1px rgba(22, 54, 19, 0.15);
+    position: absolute;
+    top: 31px;
+    right: 20px;
+    /* 默认隐藏 */
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: top right;
+    transition: 0.3s ease;
+    /* 过渡延迟 */
+    transition-delay: 0.1s;
+  }
+  /* 菜单项 */
+  .menu-list li{
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    color: black;
+    cursor: pointer;
+    position: relative;
+    /* 默认隐藏 */
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0.2s ease-in;
+  }
+  .menu-list li:hover{
+    color: #66a34a;
+  }
+  /* 菜单项下边框 */
+  .menu-list li::before{
+    content: "";
+    width: calc(100% - 24px);
+    height: 1px;
+    background-color: rgba(92,103,255,0.1);
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+  }
+  
+  .menu-list li:last-child::before{
+    display: none;
+  }
+  /* 菜单项图标 */
+  .menu-list .fa{
+    font-size: 14px;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* 菜单项文本 */
+  .menu-list span{
+    font-size: 12px;
+    /* margin-left: ; */
+  }
+  
+  
+  .active .line-box{
+    transform: rotate(-90deg);
+  }
+  .active .line-box .line:first-child{
+    transform: translateX(13px) translateY(3.5px)
+  }
+  .active .line-box .line:nth-child(2){
+    transform: rotate(-90deg) translateX(-3px) translateY(6px);
+  }
+  .active .line-box .line:nth-child(3){
+    transform: translateY(-3px);
+  }
+  .active .line-box .line:last-child{
+    transform: translateY(-3.5px) translateX(1px);
+  }
+  /* 菜单列表的变化 */
+  .active .menu-list{
+    opacity: 1;
+    transform: scale(1);
+  }
+  .active .menu-list li{
+    /* 执行动画：动画名 时长 线性 停留在最后一帧 */
+    animation: fade-in-item 0.4s linear forwards;
+  }
+  /* 接下来为每一项设置动画延迟时间 */
+  .active .menu-list li:nth-child(1){
+    animation-delay: 0.1s;
+  }
+  .active .menu-list li:nth-child(2){
+    animation-delay: 0.2s;
+  }
+  .active .menu-list li:nth-child(3){
+    animation-delay: 0.3s;
+  }
+  .active .menu-list li:nth-child(4){
+    animation-delay: 0.4s;
+  }
+  
+  /* 定义动画 */
+  @keyframes fade-in-item {
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+  }
+  
+  

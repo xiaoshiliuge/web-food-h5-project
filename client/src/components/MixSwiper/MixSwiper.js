@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef} from "react";
 import { Swiper} from "swiper"; 
 import { SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper";
 import { PlayOutline} from 'antd-mobile-icons'
 
 
@@ -12,13 +12,16 @@ function MixSlider  ({ videoUrl, images }) {
   useEffect(() => {
     const swiper = new Swiper(swiperRef.current, {
       loop: true,
-      autoplay: true,
+      autoplay:  {
+        delay: 4000, // 指定自动播放之间的延迟时间，单位为毫秒
+        disableOnInteraction: false, // 在用户与幻灯片互动后不停止自动播放
+      },
       pagination: {
           el: ".swiper-pagination",
           clickable: true,
       },
       navigation: true,
-      modules: [Navigation, Pagination],
+      modules: [Autoplay, Navigation, Pagination],
       });
 
       return () => {
@@ -51,7 +54,7 @@ function MixSlider  ({ videoUrl, images }) {
             {videoUrl && (
               <SwiperSlide>
                 <div className="video-wrapper">
-                <video className="video-element" onClick={handlePause} src={videoUrl} loop muted />
+                <video className="video-element" onClick={handlePause} src={videoUrl} loop muted autoPlay/>
                  {!isPlaying && <PlayOutline  className="video-btn" onClick={handlePlay}/>}
                 </div>
               </SwiperSlide>)}
